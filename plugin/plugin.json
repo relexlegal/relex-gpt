@@ -1,0 +1,15 @@
+{
+  "name": "relex-legal",
+  "displayName": "Relex Legal for GPT",
+  "version": "0.1.0",
+  "description": "Drive your Relex legal cases from ChatGPT and OpenAI Codex — read, reason, draft, and record over a PII-safe API. Clients' names and IDs are sealed with a key only the user holds; ChatGPT only ever works with de-identified labels.",
+  "author": { "name": "Relex" },
+  "homepage": "https://relex.you/docs/connectors/gpt",
+  "repository": "https://github.com/relexyou/relex-gpt",
+  "license": "AGPL-3.0-or-later",
+  "keywords": ["legal", "case-management", "pii", "chatgpt", "openai", "codex", "mcp", "sealed"],
+  "mcp": {
+    "url": "https://relex.you/api/mcp",
+    "transport": "http"
+  }
+}
