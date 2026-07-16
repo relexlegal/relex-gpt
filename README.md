@@ -24,34 +24,44 @@ fixed ~1k-token cost. Auth is **browser OAuth 2.1 + PKCE** (Google/Apple) —
 Party data is sealed client-side; document content is redacted client-side by
 default; `execute` refuses plaintext PII and returns deep links instead.
 
+## Official OpenAI names
+
+| Surface | Product calls it |
+|---------|------------------|
+| ChatGPT | **App** / custom **MCP connector** (Settings → **Apps** or **Apps & Connectors**; often needs **Developer mode**) |
+| Directory | **Plugin** (can wrap apps + skills — only if published) |
+| Workspace admin | **Apps** (+ **Plugins** policy) |
+| Codex | **MCP server** |
+
+Always display name **Relex**, URL `https://relex.you/api/mcp`.
+
 ## Which plan do you have?
 
 ### ChatGPT Plus / Pro (personal)
 
-**You** install the connector:
+**You** create the app / custom connector:
 
-1. Open **Settings → Apps** (or **Connectors**, depending on the UI version).
-2. Enable **Developer mode** / custom apps if prompted (Pro / eligible plans).
-3. **Create** / **Add custom connector** (MCP):
+1. **Settings → Apps** (enable **Developer mode** if shown).
+2. **Create** / **Add custom connector** (MCP):
    - **Name:** Relex
    - **Server URL:** `https://relex.you/api/mcp`
-4. Save, then click **Connect** and sign in to Relex in the browser.
-5. In a chat, enable the Relex app/connector and say:
+3. **Connect** → browser OAuth to Relex.
+4. Enable **Relex** in the chat tools panel, then:
    > Set up my practice workflow with Relex
 
 ### ChatGPT Business / Team / Enterprise / Edu
 
 | Role | Steps |
 |------|--------|
-| **Owner / admin** | **Workspace settings → Apps** (and **Plugins** when available). Allow custom MCP connectors / developer apps if required. **Add custom connector** with URL `https://relex.you/api/mcp`, name it **Relex**, and **publish / enable** it for the roles that need it. Members cannot add custom connectors themselves. |
-| **Member** | Open **Settings → Apps / Connectors**. Find **Relex** under workspace-available apps. Click **Connect** and complete OAuth for *your* Relex account. If Relex is missing, ask your admin to enable it. |
+| **Owner / admin** | **Workspace settings → Apps** (+ **Plugins**). Allow custom MCP / developer apps. Add **Relex** → `https://relex.you/api/mcp`, **publish / enable** for roles. Members cannot add custom entries themselves. |
+| **Member** | **Settings → Apps**. Find **Relex**, **Connect**, OAuth *your* Relex account. |
 
-Admin install only makes Relex **visible**. Each member still authenticates
-individually. Workspace policy may require admin approval for write actions.
+Admin install only makes Relex **visible**. Each member still OAuths alone.
 
 Full guide: [`docs/install.md`](docs/install.md) ·
 [`docs/connect-chatgpt.md`](docs/connect-chatgpt.md) ·
-[`docs/connect-codex.md`](docs/connect-codex.md).
+[`docs/connect-codex.md`](docs/connect-codex.md) ·
+https://relex.you/docs/connectors/gpt
 
 ## Codex
 
