@@ -9,7 +9,7 @@ Use Relex as a **custom MCP connector / app** in ChatGPT. Sign-in is a
 2. Enable developer / custom connector creation if required.
 3. **Add custom connector**:
    - Name: `Relex`
-   - URL: `https://relex.you/api/mcp`
+   - URL: `https://relex.legal/api/mcp`
 4. **Connect** → sign in to Relex.
 5. In a new chat, enable Relex, then: *“Set up my practice workflow with Relex”*.
 
@@ -19,7 +19,7 @@ Use Relex as a **custom MCP connector / app** in ChatGPT. Sign-in is a
 
 1. **Workspace settings → Apps** (+ **Plugins** if present).
 2. Allow custom MCP connectors for the right roles.
-3. Add **Relex** → `https://relex.you/api/mcp`.
+3. Add **Relex** → `https://relex.legal/api/mcp`.
 4. Publish / enable for members.
 
 ### Member (each person)

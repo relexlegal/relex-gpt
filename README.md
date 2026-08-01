@@ -17,7 +17,7 @@ Downstream of the shared Relex MCP server. Base package:
 ## How it works
 
 ChatGPT / Codex connect to the **remote MCP server** at
-`https://relex.you/api/mcp` with two tools — `search` and `execute` — and a
+`https://relex.legal/api/mcp` with two tools — `search` and `execute` — and a
 fixed ~1k-token cost. Auth is **browser OAuth 2.1 + PKCE** (Google/Apple) —
 **no key to paste**. A static API key works for CI/headless Codex.
 
@@ -33,7 +33,7 @@ default; `execute` refuses plaintext PII and returns deep links instead.
 | Workspace admin | **Apps** (+ **Plugins** policy) |
 | Codex | **MCP server** |
 
-Always display name **Relex**, URL `https://relex.you/api/mcp`.
+Always display name **Relex**, URL `https://relex.legal/api/mcp`.
 
 ## Which plan do you have?
 
@@ -44,7 +44,7 @@ Always display name **Relex**, URL `https://relex.you/api/mcp`.
 1. **Settings → Apps** (enable **Developer mode** if shown).
 2. **Create** / **Add custom connector** (MCP):
    - **Name:** Relex
-   - **Server URL:** `https://relex.you/api/mcp`
+   - **Server URL:** `https://relex.legal/api/mcp`
 3. **Connect** → browser OAuth to Relex.
 4. Enable **Relex** in the chat tools panel, then:
    > Set up my practice workflow with Relex
@@ -53,7 +53,7 @@ Always display name **Relex**, URL `https://relex.you/api/mcp`.
 
 | Role | Steps |
 |------|--------|
-| **Owner / admin** | **Workspace settings → Apps** (+ **Plugins**). Allow custom MCP / developer apps. Add **Relex** → `https://relex.you/api/mcp`, **publish / enable** for roles. Members cannot add custom entries themselves. |
+| **Owner / admin** | **Workspace settings → Apps** (+ **Plugins**). Allow custom MCP / developer apps. Add **Relex** → `https://relex.legal/api/mcp`, **publish / enable** for roles. Members cannot add custom entries themselves. |
 | **Member** | **Settings → Apps**. Find **Relex**, **Connect**, OAuth *your* Relex account. |
 
 Admin install only makes Relex **visible**. Each member still OAuths alone.
@@ -61,14 +61,14 @@ Admin install only makes Relex **visible**. Each member still OAuths alone.
 Full guide: [`docs/install.md`](docs/install.md) ·
 [`docs/connect-chatgpt.md`](docs/connect-chatgpt.md) ·
 [`docs/connect-codex.md`](docs/connect-codex.md) ·
-https://relex.you/docs/connectors/gpt
+https://relex.legal/docs/connectors/gpt
 
 ## Codex
 
 ```bash
 # HTTP MCP — OAuth when supported; otherwise API key
 # Config shape varies by Codex CLI version; endpoint is always:
-# https://relex.you/api/mcp
+# https://relex.legal/api/mcp
 ```
 
 API-key fallback (Relex → **Settings → API Keys**):
@@ -77,7 +77,7 @@ API-key fallback (Relex → **Settings → API Keys**):
 {
   "mcpServers": {
     "relex": {
-      "url": "https://relex.you/api/mcp",
+      "url": "https://relex.legal/api/mcp",
       "headers": {
         "Authorization": "Bearer rlx_..."
       }
@@ -105,11 +105,11 @@ relex-gpt/
 └── SECURITY.md
 ```
 
-## Docs on relex.you
+## Docs on relex.legal
 
-- [GPT connector](https://relex.you/docs/connectors/gpt)
-- [MCP Server](https://relex.you/docs/mcp)
-- [For AI Agents](https://relex.you/for-agents)
+- [GPT connector](https://relex.legal/docs/connectors/gpt)
+- [MCP Server](https://relex.legal/docs/mcp)
+- [For AI Agents](https://relex.legal/for-agents)
 
 ## License
 

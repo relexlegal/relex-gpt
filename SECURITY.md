@@ -5,7 +5,7 @@ PII to the model**.
 
 ## Authentication
 
-- MCP: `https://relex.you/api/mcp`
+- MCP: `https://relex.legal/api/mcp`
 - OAuth 2.1 + PKCE (Google/Apple) — no key paste
 - API key fallback from Relex **Settings → API Keys**
 - Revoke under **Settings → API Keys**; clients under **Settings → Agents**
@@ -23,4 +23,4 @@ No secrets ship here. Tool handlers and PII guards run in the Relex backend.
 
 ## Reporting
 
-**security@relex.you** — private disclosure only.
+**security@relex.legal** — private disclosure only.

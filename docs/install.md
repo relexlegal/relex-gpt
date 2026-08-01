@@ -7,7 +7,7 @@ your practice workflow.
 **MCP URL (everyone):**
 
 ```
-https://relex.you/api/mcp
+https://relex.legal/api/mcp
 ```
 
 ## Step 0 — Which subscription?
@@ -28,7 +28,7 @@ If you are not an admin on a managed workspace, skip to
 3. Turn on **Developer mode** / allow custom connectors if shown.
 4. **Create** or **Add custom connector** (MCP):
    - Name: `Relex`
-   - MCP server URL: `https://relex.you/api/mcp`
+   - MCP server URL: `https://relex.legal/api/mcp`
    - Leave OAuth client id/secret blank unless Relex support told you otherwise
      (dynamic OAuth discovery is preferred).
 5. Save.
@@ -46,7 +46,7 @@ If you are not an admin on a managed workspace, skip to
    **disabled by default** — enable carefully.
 4. **Add custom connector**:
    - Name: `Relex`
-   - Server URL: `https://relex.you/api/mcp`
+   - Server URL: `https://relex.legal/api/mcp`
 5. **Publish / enable** for the groups or roles that should see it.
 6. Tell members: *“Relex is available under Settings → Apps — click Connect and
    sign into your Relex account.”*
@@ -94,7 +94,7 @@ Relex → **Settings → API Keys → Create key**, then:
 {
   "mcpServers": {
     "relex": {
-      "url": "https://relex.you/api/mcp",
+      "url": "https://relex.legal/api/mcp",
       "headers": {
         "Authorization": "Bearer rlx_..."
       }

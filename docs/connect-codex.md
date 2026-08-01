@@ -3,7 +3,7 @@
 Point Codex at the hosted Relex MCP server:
 
 ```
-https://relex.you/api/mcp
+https://relex.legal/api/mcp
 ```
 
 ## OAuth (preferred when the host supports it)
@@ -26,7 +26,7 @@ Example shape (adapt to your Codex config file):
 {
   "mcpServers": {
     "relex": {
-      "url": "https://relex.you/api/mcp",
+      "url": "https://relex.legal/api/mcp",
       "headers": {
         "Authorization": "Bearer rlx_..."
       }
