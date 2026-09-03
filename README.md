@@ -9,10 +9,10 @@ case — **without ever receiving PII**.
 > [`docs/positioning.md`](docs/positioning.md).
 
 Downstream of the shared Relex MCP server. Base package:
-[relexyou/relex-mcp](https://github.com/relexyou/relex-mcp). Sibling connectors:
-[Claude](https://github.com/relexyou/relex-claude) ·
-[Grok](https://github.com/relexyou/relex-grok) ·
-[Gemini](https://github.com/relexyou/relex-gemini).
+[relexlegal/relex-mcp](https://github.com/relexlegal/relex-mcp). Sibling connectors:
+[Claude](https://github.com/relexlegal/relex-claude) ·
+[Grok](https://github.com/relexlegal/relex-grok) ·
+[Gemini](https://github.com/relexlegal/relex-gemini).
 
 ## How it works
 

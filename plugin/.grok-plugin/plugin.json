@@ -8,7 +8,7 @@
     "url": "https://relex.legal"
   },
   "homepage": "https://relex.legal/docs/connectors/gpt",
-  "repository": "https://github.com/relexyou/relex-gpt",
+  "repository": "https://github.com/relexlegal/relex-gpt",
   "license": "AGPL-3.0-or-later",
   "keywords": [
     "legal",
