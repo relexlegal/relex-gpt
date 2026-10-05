@@ -68,6 +68,38 @@ upload by default, so you don't receive it either. Therefore:
 This section is the **canonical** statement of the PII rule (mirrored in the
 server's `execute` tool description at runtime); the other skills point here.
 
+## Evidence workflow (mandatory)
+
+Drive every matter with this sequence. Do **not** skip to argument or filing
+when sources are blocked.
+
+1. **Select the matter** — `list_matters` / `GET /cases` then
+   `read_matter_context` / `GET /cases/{caseId}/context` (or
+   `diagnose_matter_sources`). Confirm you are on the intended case.
+2. **Inspect source readiness** — for each `documents[]` entry, check
+   `missing`, `failureReason`, `repairAction`, and `status`. Literal converter
+   failures and unreadable sources appear as missing with a repair action.
+3. **Read only usable redacted text** — quote or rely only on present
+   `text`. Never invent pages, parties, payments, or citations.
+4. **Fix blockers in Relex** — hand `deepLink` / `repairAction` to the user.
+   Repairs happen against the **existing** source/matter in the browser.
+   **Never** ask the user to attach originals in this chat, email them to you,
+   or bypass client-side privacy.
+5. **Ground the answer** — distinguish source facts, user statements,
+   inferences, contested claims, and missing evidence. A prosecution docket
+   number (`…/P/…`) is **not** a court decision. Cite statutes/decisions only
+   from cached `POST /research/scrape` text, or mark them unverified.
+6. **File and verify** — `save_matter_work_product` / `POST /cases/{caseId}/draft`
+   with label tokens only, then read the draft back. Incomplete drafts may keep
+   explicit `[MISSING]` markers; do not claim filing/export readiness.
+7. **Hand off** — preserve conclusions, evidence refs, and blockers so another
+   host (Claude, ChatGPT, Grok, Gemini, or a generic MCP/xAI adapter) can
+   continue the same matter without re-deriving unsupported claims.
+
+Agent drafts and prior answers are **not** independent corroboration. If
+evaluation updated metadata but sources remain missing, say so and steer the
+repair — do not claim the case is substantively ready.
+
 ## Documents are filed in Relex
 
 You write the legal text. Relex files it: versions, redline, signature, export.
