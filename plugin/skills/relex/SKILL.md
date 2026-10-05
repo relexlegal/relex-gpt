@@ -76,9 +76,10 @@ when sources are blocked.
 1. **Select the matter** — `list_matters` / `GET /cases` then
    `read_matter_context` / `GET /cases/{caseId}/context` (or
    `diagnose_matter_sources`). Confirm you are on the intended case.
-2. **Inspect source readiness** — for each `documents[]` entry, check
-   `missing`, `failureReason`, `repairAction`, and `status`. Literal converter
-   failures and unreadable sources appear as missing with a repair action.
+2. **Inspect source readiness** — call `diagnose_matter_sources` (preferred) or
+   read context. Use `blockers[]` / each document's `missing`, `failureReason`,
+   `repairAction`, `deepLink`, and `status`. Hand `deepLink` to the user; do not
+   invent text for blocked sources.
 3. **Read only usable redacted text** — quote or rely only on present
    `text`. Never invent pages, parties, payments, or citations.
 4. **Fix blockers in Relex** — hand `deepLink` / `repairAction` to the user.
