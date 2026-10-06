@@ -70,32 +70,43 @@ server's `execute` tool description at runtime); the other skills point here.
 
 ## Evidence workflow (mandatory)
 
-Drive every matter with this sequence. Do **not** skip to argument or filing
-when sources are blocked.
+Drive every matter with this sequence. Prefer the typed workflow tools; use
+`search` / `execute` only for what they do not cover. Do **not** skip to
+argument or filing when sources are blocked.
 
-1. **Select the matter** — `list_matters` / `GET /cases` then
-   `read_matter_context` / `GET /cases/{caseId}/context` (or
-   `diagnose_matter_sources`). Confirm you are on the intended case.
-2. **Inspect source readiness** — call `diagnose_matter_sources` (preferred) or
-   read context. Use `blockers[]` / each document's `missing`, `failureReason`,
-   `repairAction`, `deepLink`, and `status`. Hand `deepLink` to the user; do not
+1. **Select the matter** — `list_matters`, then `read_matter_context`. Continue
+   from its `workProducts[]` (draftId, revision) and `steeringConclusions[]`
+   instead of redoing earlier sessions.
+2. **Inspect source readiness** — `diagnose_matter_sources`. It returns a
+   top-level `outcome` and, per source, `outcome`, `failureCode`,
+   `failureMessage`, `repairAction` and a `deepLink` to that source. Do not
    invent text for blocked sources.
-3. **Read only usable redacted text** — quote or rely only on present
+3. **Read only usable redacted text** — rely only on `readySources` / present
    `text`. Never invent pages, parties, payments, or citations.
-4. **Fix blockers in Relex** — hand `deepLink` / `repairAction` to the user.
-   Repairs happen against the **existing** source/matter in the browser.
-   **Never** ask the user to attach originals in this chat, email them to you,
-   or bypass client-side privacy.
+4. **Fix blockers in Relex** — give the user each blocker's `failureMessage`
+   and `deepLink`: `raise_quota` → plan/billing page; `retry_processing`,
+   `reprocess_or_replace_source`, `open_in_relex` → that source. Repairs happen
+   against the **existing** source in the browser. **Never** ask the user to
+   attach originals in this chat, email them to you, or bypass client-side
+   privacy.
 5. **Ground the answer** — distinguish source facts, user statements,
    inferences, contested claims, and missing evidence. A prosecution docket
-   number (`…/P/…`) is **not** a court decision. Cite statutes/decisions only
-   from cached `POST /research/scrape` text, or mark them unverified.
-6. **File and verify** — `save_matter_work_product` / `POST /cases/{caseId}/draft`
-   with label tokens only, then read the draft back. Incomplete drafts may keep
+   number (`…/P/…`) is **not** a court decision. Cite statutes and court
+   decisions only from cached `POST /research/scrape` text or a ready source;
+   otherwise write `[UNVERIFIED]` in the same sentence. Relex blocks saves
+   with ungrounded court citations.
+6. **File and verify** — `save_matter_work_product` with label tokens only
+   (`[Party 1]`, `[PARTY_NAME_1]`; never real names or identifiers — Relex
+   rejects them by category) and an `idempotencyKey`. To revise, pass `draftId`
+   + `expectedRevision`. `outcome: blocked` lists what to fix; `conflict` means
+   re-read, merge, save again. Read the draft back. Incomplete drafts may keep
    explicit `[MISSING]` markers; do not claim filing/export readiness.
-7. **Hand off** — preserve conclusions, evidence refs, and blockers so another
-   host (Claude, ChatGPT, Grok, Gemini, or a generic MCP/xAI adapter) can
-   continue the same matter without re-deriving unsupported claims.
+   Evidence-backed ontology fixes go through `correct_matter_ontology` at
+   `baseRevision`.
+7. **Hand off** — `conclude_matter_session` puts the conclusions on the matter;
+   the next host (Claude, ChatGPT, Grok, Gemini, or a generic MCP/xAI adapter)
+   sees them in `read_matter_context.steeringConclusions` and continues without
+   re-deriving unsupported claims.
 
 Agent drafts and prior answers are **not** independent corroboration. If
 evaluation updated metadata but sources remain missing, say so and steer the
