@@ -1,7 +1,7 @@
 {
   "name": "relex-legal",
   "displayName": "Relex Legal for GPT",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Drive Relex legal cases from ChatGPT and Codex over a PII-safe MCP API.",
   "author": {
     "name": "Relex",

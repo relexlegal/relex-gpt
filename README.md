@@ -41,12 +41,24 @@ Connector Library listing or approval. Check the current
 ## How it works
 
 ChatGPT / Codex connect to the **remote MCP server** at
-`https://relex.legal/api/mcp` with two tools — `search` and `execute` — and a
+`https://relex.legal/api/mcp` with eleven MCP tools (matter workflows plus `search` / `execute`) and a
 fixed ~1k-token cost. Auth is **browser OAuth 2.1 + PKCE** (Google/Apple) —
 **no key to paste**. A static API key works for CI/headless Codex.
 
 Party data is sealed client-side; document content is redacted client-side by
 default; `execute` refuses plaintext PII and returns deep links instead.
+
+
+## MCP tools (remote server)
+
+The hosted connector at `https://relex.legal/api/mcp` exposes **eleven** tools:
+`list_matters`, `read_matter_context`, `diagnose_matter_sources`,
+`save_matter_work_product`, `correct_matter_ontology`, `conclude_matter_session`,
+`find_legal_professionals`, `read_legal_professional`, `prepare_professional_request`,
+`search`, and `execute`. Auth is OAuth 2.1 + PKCE; connector scopes are
+`relex.cases.read relex.cases.write relex.draft`.
+
+ChatGPT redirect forms: `https://chatgpt.com/connector/oauth/{callback_id}` or the stable `https://chatgpt.com/connector_platform_oauth_redirect` (requires RFC 9207 `iss` in the authorization response, which Relex advertises).
 
 ## Official OpenAI names
 
