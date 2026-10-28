@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "relex-legal",
   "displayName": "Relex Legal for GPT",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Relex legal practice management for ChatGPT and Codex: work on your Relex matters over a PII-safe MCP connector — redacted sources, drafts, matter ontology and verified legal professionals.",
   "author": {
     "name": "Relex",
@@ -26,7 +26,7 @@
       "interface": {
         "displayName": "Relex Legal",
         "shortDescription": "Legal practice management",
-        "longDescription": "Relex is a legal practice management workspace. This plugin connects ChatGPT and Codex to your own Relex account through the hosted MCP server at https://relex.legal/api/mcp (OAuth 2.1 sign-in; every call runs as you).\n\nWhat it does:\n- Lists the matters you can access and reads each matter's saved, redacted context.\n- Reports source readiness per document and reads a source's redacted text in pages.\n- Saves drafts and new revisions to a matter, applies evidence-backed corrections to the matter ontology, and records the conclusions of a working session.\n- Searches published, professionally verified profiles in the Relex Marketplace and prepares a reference-only request to one professional. The request returns an approval link; nothing is sent, shared or charged until you approve it in Relex.\n- Exposes the documented Relex API through two generic tools, search and execute, validated against the published OpenAPI specification.\n\nData protection: party identities (names, national IDs, contacts) are sealed client-side under your PII password and the server stores only ciphertext. Documents are read and redacted by the Relex Private Model on Relex servers by default. The connector returns label tokens and redacted text only; calls that would return party or document plaintext are refused and answered with a link to the Relex web app instead. Payments, uploads and identity data are handled only in the Relex web app.\n\nBundled skills describe the Relex workflows (matters, intake, citations, research, ontology, participants, Marketplace, steering) and include 12 jurisdiction reference packs.\n\nIntended users: lawyers, legal teams and their clients who already use Relex. Limitations: the plugin works on matters in your Relex account only; it does not give legal advice and does not process payments in chat.",
+        "longDescription": "Relex is a legal practice management workspace. This plugin connects ChatGPT and Codex to your own Relex account through the hosted MCP server at https://relex.legal/api/mcp (OAuth 2.1 sign-in; every call runs as you).\n\nWhat it does:\n- Lists the matters you can access and reads each matter's saved, redacted context.\n- Reports source readiness per document and reads a source's redacted text in pages.\n- Saves drafts and new revisions to a matter, applies evidence-backed corrections to the matter ontology, and records the conclusions of a working session.\n- Searches published, professionally verified profiles in the Relex Marketplace and prepares a reference-only request to one professional. The request returns an approval link; nothing is sent, shared or charged until you approve it in Relex.\n- Exposes the documented Relex API through three generic tools, search, read_api (read-only) and execute (writes), validated against the published OpenAPI specification.\n\nData protection: party identities (names, national IDs, contacts) are sealed client-side under your PII password and the server stores only ciphertext. Documents are read and redacted by the Relex Private Model on Relex servers by default. The connector returns label tokens and redacted text only; calls that would return party or document plaintext are refused and answered with a link to the Relex web app instead. Payments, uploads and identity data are handled only in the Relex web app.\n\nBundled skills describe the Relex workflows (matters, intake, citations, research, ontology, participants, Marketplace, steering) and include 12 jurisdiction reference packs.\n\nIntended users: lawyers, legal teams and their clients who already use Relex. Limitations: the plugin works on matters in your Relex account only; it does not give legal advice and does not process payments in chat.",
         "developerName": "Relex",
         "category": "Business & Operations",
         "capabilities": [
@@ -103,7 +103,7 @@
         "commerce_description": "The plugin does not take payments. Paid steps in Relex (case tiers, professional fees) are approved and paid only in the Relex web app through links the plugin returns."
       },
       "publication": {
-        "release_notes": "0.1.8: listing for the twelve hosted tools (ten matter tools plus search and execute); data-only server responses; updated skills for the current Relex API."
+        "release_notes": "0.1.9: adds the read-only read_api tool (thirteen hosted tools: ten matter tools plus search, read_api and execute; server version 1.1.0). execute is for writes only; skills use read_api for reads."
       }
     }
   }
