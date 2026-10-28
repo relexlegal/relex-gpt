@@ -41,11 +41,10 @@ Connector Library listing or approval. Check the current
 ## How it works
 
 ChatGPT / Codex connect to the **remote MCP server** at
-`https://relex.legal/api/mcp` with twelve MCP tools (matter workflows plus `search` / `execute`) and a
-fixed ~1k-token cost. Auth is **browser OAuth 2.1 + PKCE** (Google/Apple) —
+`https://relex.legal/api/mcp` with twelve MCP tools (matter workflows plus `search` / `execute`). Auth is **browser OAuth 2.1 + PKCE** (Google/Apple) —
 **no key to paste**. A static API key works for CI/headless Codex.
 
-Party data is sealed client-side; document content is redacted client-side by
+Party data is sealed client-side; document content is read and redacted by the Relex Private Model on Relex servers by
 default; `execute` refuses plaintext PII and returns deep links instead.
 
 

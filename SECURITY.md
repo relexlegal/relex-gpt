@@ -13,7 +13,7 @@ PII to the model**.
 ## Client PII never reaches the model
 
 - Party data sealed client-side under the user's PII password
-- Documents redacted client-side by default
+- Documents read and redacted by the Relex Private Model on Relex servers by default (browser mode keeps reading on the device)
 - MCP `execute` blocks plaintext party/document endpoints and returns deep links
 - Model sees labels like `[Party 1]` and anonymized counts only
 

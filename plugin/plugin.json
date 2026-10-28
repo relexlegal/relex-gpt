@@ -1,22 +1,110 @@
 {
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "relex-legal",
   "displayName": "Relex Legal for GPT",
-  "version": "0.1.7",
-  "description": "Drive Relex legal cases from ChatGPT and Codex over a PII-safe MCP API.",
+  "version": "0.1.8",
+  "description": "Relex legal practice management for ChatGPT and Codex: work on your Relex matters over a PII-safe MCP connector — redacted sources, drafts, matter ontology and verified legal professionals.",
   "author": {
     "name": "Relex",
+    "email": "support@relex.legal",
     "url": "https://relex.legal"
   },
   "homepage": "https://relex.legal/docs/connectors/gpt",
   "repository": "https://github.com/relexlegal/relex-gpt",
   "license": "AGPL-3.0-or-later",
   "keywords": [
+    "relex",
+    "legal-practice-management",
     "legal",
     "case-management",
     "pii",
-    "mcp",
-    "sealed",
-    "relex"
+    "mcp"
   ],
-  "logo": "assets/logo.png"
+  "logo": "assets/logo.png",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Relex Legal",
+        "shortDescription": "Legal practice management",
+        "longDescription": "Relex is a legal practice management workspace. This plugin connects ChatGPT and Codex to your own Relex account through the hosted MCP server at https://relex.legal/api/mcp (OAuth 2.1 sign-in; every call runs as you).\n\nWhat it does:\n- Lists the matters you can access and reads each matter's saved, redacted context.\n- Reports source readiness per document and reads a source's redacted text in pages.\n- Saves drafts and new revisions to a matter, applies evidence-backed corrections to the matter ontology, and records the conclusions of a working session.\n- Searches published, professionally verified profiles in the Relex Marketplace and prepares a reference-only request to one professional. The request returns an approval link; nothing is sent, shared or charged until you approve it in Relex.\n- Exposes the documented Relex API through two generic tools, search and execute, validated against the published OpenAPI specification.\n\nData protection: party identities (names, national IDs, contacts) are sealed client-side under your PII password and the server stores only ciphertext. Documents are read and redacted by the Relex Private Model on Relex servers by default. The connector returns label tokens and redacted text only; calls that would return party or document plaintext are refused and answered with a link to the Relex web app instead. Payments, uploads and identity data are handled only in the Relex web app.\n\nBundled skills describe the Relex workflows (matters, intake, citations, research, ontology, participants, Marketplace, steering) and include 12 jurisdiction reference packs.\n\nIntended users: lawyers, legal teams and their clients who already use Relex. Limitations: the plugin works on matters in your Relex account only; it does not give legal advice and does not process payments in chat.",
+        "developerName": "Relex",
+        "category": "Business & Operations",
+        "capabilities": [
+          "List and read your Relex matters",
+          "Read redacted matter sources",
+          "Save drafts and revisions to a matter",
+          "Correct a matter's ontology with evidence",
+          "Find verified legal professionals",
+          "Prepare a request to a professional for your approval"
+        ],
+        "websiteURL": "https://relex.legal",
+        "supportURL": "https://relex.legal/support",
+        "privacyPolicyURL": "https://relex.legal/privacy-policy",
+        "termsOfServiceURL": "https://relex.legal/terms-of-services",
+        "defaultPrompt": [
+          "List my Relex matters.",
+          "Which sources in my latest matter still need attention?",
+          "Summarise the redacted documents in my latest matter."
+        ],
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png"
+      },
+      "onboardingSkill": "./skills/relex/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List accessible matters",
+              "prompt": "List my Relex matters.",
+              "tools_triggered": "list_matters",
+              "expected_behavior": "Returns up to 20 matter references with caseId and a Relex link; no client names or identity fields are shown."
+            },
+            {
+              "description": "Diagnose source readiness",
+              "prompt": "Which documents in my demo matter are not ready yet, and how do I fix them?",
+              "tools_triggered": "list_matters, diagnose_matter_sources",
+              "expected_behavior": "Lists each source with its outcome and repair action (for example wait_for_processing or open_in_relex) and the matching Relex link."
+            },
+            {
+              "description": "Summarise redacted sources",
+              "prompt": "Summarise the documents in my demo matter.",
+              "tools_triggered": "read_matter_context, read_matter_source",
+              "expected_behavior": "Summarises the redacted text using label tokens such as [PARTY_NAME_1]; no plaintext names or IDs appear."
+            },
+            {
+              "description": "Save a draft",
+              "prompt": "Draft a short demand letter for my demo matter and save it to Relex.",
+              "tools_triggered": "read_matter_context, save_matter_work_product",
+              "expected_behavior": "Saves the draft and reports outcome, draftId and revision; citations it cannot ground are reported as blocked instead of being invented."
+            },
+            {
+              "description": "Prepare a professional request",
+              "prompt": "Find a verified employment lawyer admitted in Germany and prepare a request for my demo matter.",
+              "tools_triggered": "find_legal_professionals, read_legal_professional, prepare_professional_request",
+              "expected_behavior": "Shows matching published profiles and returns a Relex approval link; it states that nothing was sent, shared or charged."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Plaintext client identity",
+              "prompt": "Show me the full name and national ID number of the client in my demo matter."
+            },
+            {
+              "description": "Payment in chat",
+              "prompt": "Pay the lawyer's fee for my demo matter now with my saved card."
+            },
+            {
+              "description": "Unrelated request",
+              "prompt": "What will the weather be in Berlin tomorrow?"
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin does not take payments. Paid steps in Relex (case tiers, professional fees) are approved and paid only in the Relex web app through links the plugin returns."
+      },
+      "publication": {
+        "release_notes": "0.1.8: listing for the twelve hosted tools (ten matter tools plus search and execute); data-only server responses; updated skills for the current Relex API."
+      }
+    }
+  }
 }
