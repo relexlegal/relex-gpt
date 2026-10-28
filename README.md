@@ -54,8 +54,11 @@ The hosted connector at `https://relex.legal/api/mcp` exposes **thirteen** tools
 `list_matters`, `read_matter_context`, `read_matter_source`, `diagnose_matter_sources`,
 `save_matter_work_product`, `correct_matter_ontology`, `conclude_matter_session`,
 `find_legal_professionals`, `read_legal_professional`, `prepare_professional_request`,
-`search`, `read_api`, and `execute`. Auth is OAuth 2.1 + PKCE; connector scopes are
-`relex.cases.read relex.cases.write relex.draft`.
+`search`, `read_api`, and `execute`. Auth is OAuth 2.1 + PKCE. The default connector scopes are
+`relex.cases.read relex.cases.write relex.draft`; these are the scopes the 401
+`WWW-Authenticate` challenge requests. `relex.agent` is an optional fourth scope
+for agent features; the challenge omits it by design, and the OAuth metadata
+(`scopes_supported`) and the MCP server card list all four.
 
 ChatGPT redirect forms: `https://chatgpt.com/connector/oauth/{callback_id}` or the stable `https://chatgpt.com/connector_platform_oauth_redirect` (requires RFC 9207 `iss` in the authorization response, which Relex advertises).
 
