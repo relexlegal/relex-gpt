@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "relex-legal",
   "displayName": "Relex Legal for GPT",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Relex legal practice management for ChatGPT and Codex: work on your Relex matters over a PII-safe MCP connector — redacted sources, drafts, matter ontology and verified legal professionals.",
   "author": {
     "name": "Relex",
@@ -103,7 +103,7 @@
         "commerce_description": "The plugin does not take payments. Paid steps in Relex (case tiers, professional fees) are approved and paid only in the Relex web app through links the plugin returns."
       },
       "publication": {
-        "release_notes": "0.1.9: adds the read-only read_api tool (thirteen hosted tools: ten matter tools plus search, read_api and execute; server version 1.1.0). execute is for writes only; skills use read_api for reads."
+        "release_notes": "0.1.10: adds references/how-relex-works.md (how data moves through Relex: upload on the case page, labelled drafts saved with save_matter_work_product, export with real details in the Relex app; ontology operations and provenance; agents and sessions) and uses the canonical [PARTY_NAME_n] labels. Thirteen hosted tools: ten matter tools plus search, read_api and execute."
       }
     }
   }
