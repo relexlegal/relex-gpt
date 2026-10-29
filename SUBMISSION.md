@@ -22,7 +22,7 @@ Requirements checked 2026-10-28 against developers.openai.com/plugins/deploy/
 (submission, app-review, submission-errors).
 
 ## Done in this branch
-- [x] `plugin/plugin.json` uses the portable Agent Plugins schema with `extensions.com.openai`: interface (displayName "Relex Legal", shortDescription "Legal practice management" — both ≤30 chars; longDescription; category "Business & Operations"; capabilities; website/support/privacy/terms URLs; logo + composer icon; 3 starter prompts ≤128 chars), onboardingSkill, review (exactly 5 positive + 3 negative test cases, commerce=false with explanation) and release notes. Version 0.1.9.
+- [x] `plugin/plugin.json` uses the portable Agent Plugins schema with `extensions.com.openai`: interface (displayName "Relex Legal", shortDescription "Legal practice management" — both ≤30 chars; longDescription; category "Business & Operations"; capabilities; website/support/privacy/terms URLs; logo + composer icon; 3 starter prompts ≤128 chars), onboardingSkill, review (exactly 5 positive + 3 negative test cases, commerce=false with explanation) and release notes. Version 0.1.10.
 - [x] `plugin/mcp.json` (portable, `streamable-http`, no client secret); `.mcp.json` kept for Codex.
 - [x] `scripts/build_openai_zip.py` builds `dist/relex-legal-openai.zip`: plugin root only, excludes `commands/`, `agents/`, `.grok-plugin/` (not loaded by ChatGPT), and adds a `SKILL.md` to `skills/jurisdictions/` inside the ZIP (the portal requires one in every `skills/*` folder).
 - [x] No hooks, no `apps/` / `.app.json`, no credentials in the package.

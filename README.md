@@ -48,6 +48,19 @@ Party data is sealed client-side; document content is read and redacted by the R
 default; `read_api` and `execute` refuse plaintext PII and return deep links instead.
 
 
+## How data moves through Relex
+
+| Step | Where |
+|---|---|
+| Files are uploaded to a matter | Case page in the Relex app (`https://relex.legal/dashboard/cases/{caseId}`, **Attach**) |
+| The assistant reads redacted sources | `read_matter_context`, `read_matter_source` (parties as `[PARTY_NAME_n]` labels) |
+| The assistant saves its work | `save_matter_work_product`: markdown with label tokens, versioned in the matter |
+| The user exports the finished document | Relex app: Word, PDF, Google Drive, signing, email. Labels become the parties' real details in the user's browser, after the PII password |
+
+Identity fields and original files never reach the assistant. The full guide,
+including ontology operations, agents and every endpoint area, is
+[`plugin/references/how-relex-works.md`](plugin/references/how-relex-works.md).
+
 ## MCP tools (remote server)
 
 The hosted connector at `https://relex.legal/api/mcp` exposes **thirteen** tools:
