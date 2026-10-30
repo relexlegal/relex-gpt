@@ -2,8 +2,8 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "relex-legal",
   "displayName": "Relex Legal for GPT",
-  "version": "0.1.10",
-  "description": "Relex legal practice management for ChatGPT and Codex: work on your Relex matters over a PII-safe MCP connector — redacted sources, drafts, matter ontology and verified legal professionals.",
+  "version": "0.1.11",
+  "description": "Relex legal practice management for ChatGPT and Codex: work across your Relex workspace (matters, know-how, research, ontology, agreements, intake, e-signature, invoices and payment status) over a PII-safe MCP connector — redacted sources, drafts, matter ontology and verified legal professionals.",
   "author": {
     "name": "Relex",
     "email": "support@relex.legal",
